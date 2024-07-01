@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeLite_Project Name="EmbeddedSW" InternalType="">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
+  </Plugins>
+  <Description/>
+  <Dependencies/>
+  <VirtualDirectory Name="EmbeddedApp">
+    <File Name="startup_gcc.c"/>
+    <File Name="sapphire_pub.h"/>
+    <VirtualDirectory Name="Drivers">
+      <File Name="ecg_pwm.h"/>
+      <File Name="ecg_gpio.c"/>
+      <File Name="ecg_gpio.h"/>
+      <File Name="ecg_packet.h"/>
+      <File Name="ecg_ads.c"/>
+      <File Name="ecg_ads.h"/>
+      <File Name="ecg_button.h"/>
+      <File Name="ecg_button.c"/>
+      <File Name="ecg_led.h"/>
+      <File Name="ecg_power_ctl.h"/>
+      <File Name="ecg_adc.h"/>
+      <File Name="ecg_data_capture.c"/>
+      <File Name="ecg_data_capture.h"/>
+      <File Name="ecg_power_ctl.c"/>
+      <File Name="ecg_led.c"/>
+      <File Name="ecg_adc.c"/>
+      <File Name="ecg_pwm.c"/>
+      <File Name="ecg_flash.h"/>
+      <File Name="ecg_flash.c"/>
+      <File Name="ecg_ssi.h"/>
+      <File Name="ecg_ssi.c"/>
+      <File Name="ecg_init.c"/>
+      <File Name="ecg_init.h"/>
+      <File Name="ecg_battery.h"/>
+      <File Name="ecg_battery.c"/>
+      <File Name="ecg_speaker.h"/>
+      <File Name="ecg_speaker.c"/>
+      <File Name="ecg_discover.h"/>
+      <File Name="ecg_discover.c"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="Bluetooth">
+      <File Name="bluetooth.c"/>
+      <File Name="bluetooth.h"/>
+      <File Name="bt_transport.c"/>
+      <File Name="bt_transport.h"/>
+      <File Name="bt_ucfg.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="ADS1x9x">
+      <File Name="ADS1x9x.h"/>
+      <File Name="ADS1x9x_Device_Status.c"/>
+      <File Name="ADS1x9x_Functions.c"/>
+      <File Name="ADS1x9x_SPI_Functions.c"/>
+      <File Name="stdef.h"/>
+      <File Name="init_ADS1x9x.c"/>
+    </VirtualDirectory>
+    <File Name="device_api.h"/>
+    <VirtualDirectory Name="Tests">
+      <File Name="test_ecg_flash.c"/>
+      <File Name="ecg_test.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="Other">
+      <File Name="Makefile"/>
+      <File Name="POST.txt"/>
+      <File Name="cardea_app.ld"/>
+    </VirtualDirectory>
+    <File Name="firmware_download.h"/>
+    <File Name="crc.h"/>
+    <File Name="crc.c"/>
+    <File Name="firmware_download.c"/>
+    <File Name="ecg_version.h"/>
+    <File Name="ecg_post.h"/>
+    <File Name="ecg_post.c"/>
+    <File Name="command_proc.h"/>
+    <File Name="command_proc.c"/>
+    <File Name="cardea_app.c"/>
+    <File Name="serial_num.h"/>
+    <File Name="serial_num.c"/>
+    <File Name="exception.h"/>
+    <File Name="exception.c"/>
+    <File Name="test_transfer.h"/>
+    <File Name="test_transfer.c"/>
+    <File Name="ecg_status.h"/>
+    <File Name="ecg_status.c"/>
+    <File Name="hard_fault.S"/>
+  </VirtualDirectory>
+  <Dependencies Name="Release"/>
+  <Dependencies Name="Debug">
+    <Project Name="DriverLib"/>
+    <Project Name="Bootloader"/>
+  </Dependencies>
+  <Settings Type="Dynamic Library">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g" C_Options="-g" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" UseDifferentPCHFlags="no" PCHFlags="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="" IntermediateDirectory="./Debug" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild>
+        <Command Enabled="no">#python.exe ../Scripts/update_build_revision.py ecg_version.h</Command>
+      </PreBuild>
+      <PostBuild>
+        <Command Enabled="no">#cp ./gcc/cardea_app.bin "C:/Users/Eric/Desktop/openocd-x64-0.5.0/bin"</Command>
+      </PostBuild>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>make clean all</RebuildCommand>
+        <CleanCommand>make clean</CleanCommand>
+        <BuildCommand>make</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand>gcc</SingleFileCommand>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory>$(WorkspacePath)/$(ProjectPath)/EmbeddedSW/</WorkingDirectory>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" UseDifferentPCHFlags="no" PCHFlags="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="-O2" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="" IntermediateDirectory="./Release" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand/>
+        <CleanCommand>make clean</CleanCommand>
+        <BuildCommand>make</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory>$(WorkspacePath)</WorkingDirectory>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+  </Settings>
+</CodeLite_Project>

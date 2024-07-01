@@ -1,0 +1,14 @@
+#!/bin/bash
+
+PAGE_SIZE=16384
+BOOTLOADER_SIZE=$(stat -c%s ../Bootloader/gcc/cardea_boot.bin)
+
+let FILLER_SIZE=$PAGE_SIZE-$BOOTLOADER_SIZE
+
+FILLER_PATH=$(mktemp)
+
+dd if=/dev/zero of=$FILLER_PATH bs=$FILLER_SIZE count=1
+
+cat ../Bootloader/gcc/cardea_boot.bin $FILLER_PATH gcc/cardea_app_usb.bin > gcc/cardea.bin
+
+rm $FILLER_PATH

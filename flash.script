@@ -1,0 +1,7 @@
+reset halt
+
+flash write_image erase /home/jesse/Projects/Sapphire/EmbeddedSW/gcc/cardea.bin
+
+exit
+
+
